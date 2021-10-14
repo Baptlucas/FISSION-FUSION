@@ -22,14 +22,14 @@ x = theta
 y = 0
 Y = theta2
 X = theta2
-neutron, = ax.plot(0,0, 'ko')
-neutron2, = ax.plot(-10,0, 'ko')
-neutron3, = ax.plot(-10,0, 'ko')
-uranium, = ax.plot(10,0, 'go')
-uranium2, = ax.plot(-10.2,-10, 'ro')
+neutron, = ax.plot(0,0, 'ko', markersize = 1)
+neutron2, = ax.plot(-10,0, 'ko', markersize = 1)
+neutron3, = ax.plot(-10,0, 'ko', markersize = 1)
+uranium, = ax.plot(10,0, 'go', markersize = 10)
+uranium2, = ax.plot(-10.2,-10, 'ro', markersize = 10)
 
-profission, = ax.plot(-10,0, 'ro')
-profission1, = ax.plot(-10,0, 'ro')
+profission, = ax.plot(-10,0, 'ro', markersize = 5)
+profission1, = ax.plot(-10,0, 'ro', markersize = 5)
 annotation = ax.annotate(
     'Neutron', xy=(0,0), xytext=(0,0))
 annotation3 = ax.annotate(
@@ -42,7 +42,9 @@ annotation4 = ax.annotate(
 #retirer les graduations des axes
 ax.axes.get_xaxis().set_visible(False)
 ax.axes.get_yaxis().set_visible(False)    
- 
+annotation5 = ax.annotate("", xy=(-9.5, 0), xytext=(-14.5, 0),
+            arrowprops=dict(arrowstyle="->"))
+
 def update(i):
     
     uranium.set_data(10.2,0)
@@ -78,6 +80,8 @@ def update(i):
         annotation2.set_position((-20,20))
         annotation2.xy = (-20,20)
         
+        annotation5.set_position((10.19,0))
+        annotation5.xy = (new_x,0)
         
        
     elif  new_x >= 15 : 
@@ -101,7 +105,8 @@ def update(i):
         profission.set_data(15,1)
         profission1.set_data(15,-1)
     else:  
-        
+        annotation5.set_position((-10,0))
+        annotation5.xy = (-10,0)
         neutron.set_data(new_x,0)
         annotation.set_position((new_x+0.1,0.1))
         annotation.xy = (new_x,0)
@@ -110,6 +115,10 @@ def update(i):
     return neutron, annotation
 
 ani = animation.FuncAnimation(
-    fig, update, interval = 60, blit = False)
-    
+    fig, update, interval = 15, blit = False)
+
+
+
+#ani.save('ani.mp4', fps=60, writer='imagemagick')   
+
 plt.show()
