@@ -79,9 +79,9 @@ def update(i):
         
         annotation2.set_position((-20,20))
         annotation2.xy = (-20,20)
-        
-        annotation5.set_position((10.19,0))
-        annotation5.xy = (new_x,0)
+        if 10.5< new_x < 15:
+            annotation5.set_position((10.5,0))
+            annotation5.xy = (new_x,0)
         
        
     elif  new_x >= 15 : 
